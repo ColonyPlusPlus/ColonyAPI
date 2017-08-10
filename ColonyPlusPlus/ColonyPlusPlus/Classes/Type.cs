@@ -669,7 +669,7 @@ namespace ColonyAPI.Classes
 
 
             // Add the item
-            TypeManager.registerRawType(this.TypeNamem this.node);
+            TypeManager.registerRawType(this.TypeName, this.node);
 
             // register with our tracker, just in case we need to get these later!
             TypeManager.AddedTypes.Add(this.TypeName);

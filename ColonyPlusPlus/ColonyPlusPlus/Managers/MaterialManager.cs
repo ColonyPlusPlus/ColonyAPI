@@ -24,8 +24,8 @@ namespace ColonyAPI.Managers
                 .SetAs("albedo", albedo)
                 .SetAs("emissive", emissive)
                 .SetAs("height", height)
-                .SetAs("normal", normal)
-            );
+                .SetAs("normal", normal);
+
             MatList.Add(identifier, j);
         }
 
