@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace ColonyAPI.Managers
@@ -73,6 +74,40 @@ namespace ColonyAPI.Managers
             ActionTypeRegistry.Add(t);
         }
 
+        public static void autoDiscoverTypes()
+        {
+            int typeCount = 0;
+            var typeInterface = typeof(Interfaces.IAutoType);
+            //var typelist = Assembly.GetExecutingAssembly().GetTypes().Where(t => (t != null && t.IsClass && !t.IsAbstract && typeInterface.IsAssignableFrom(t)));
+            var typelist = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(t => (t.IsClass && typeInterface.IsAssignableFrom(t)));
+            foreach (var t in typelist)
+            {
+                try
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", t.Name + " Found. Registering.");
+                    Classes.Type type = ((Classes.Type)Activator.CreateInstance(t));
+                    type.Register();
+
+                    typeCount += 1;
+                }
+                catch (MissingMethodException mme)
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", t.Name + " cannot be instantiated. This probably isn't an error.");
+                    Pipliz.Log.WriteWarning(mme.Message);
+                }
+                catch (InvalidCastException ice)
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", t.Name + " doesn't properly implement our Type system. This probably isn't an error.");
+                    Pipliz.Log.WriteWarning(ice.Message);
+                }
+                catch (Exception e)
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", t.Name + " Type Error.");
+                    Pipliz.Log.WriteWarning(e.Message + e.StackTrace);
+                }
+            }
+            Helpers.Utilities.WriteLog("ColonyAPI", typeCount + " Types Autoloaded.");
+        }
 
 
         // Register the crop in the growable Types list.

@@ -31,7 +31,7 @@ namespace ColonyAPI.Classes
         private string _RotatableZMinus;
         private string _RotatableZPlus;
         private string _TypeName;
-        private string _Icon;
+        private string _Icon = "missing.png";
         private string _Mesh;
 
         private int _NPCLimit;
@@ -46,6 +46,8 @@ namespace ColonyAPI.Classes
         private bool _AllowCreative;
         private bool _AllowPlayerCraft;
         private bool _IsBaseBlock;
+        private bool _IsNewType;
+        private bool _hasCustomMaterial = false;
 
         private bool _HasAddAction;
         private bool _HasRemoveAction;
@@ -106,8 +108,14 @@ namespace ColonyAPI.Classes
 
         // Constructor with no arguments
         // Don't pass a name to this, we will set it later
-        public Type()
+        public Type(bool newtype = false)
         {
+
+            // disable creative on blocks
+            this.AllowCreative = false;
+            this.AllowPlayerCraft = false;
+            this.IsBaseBlock = true;
+            this.IsNewType = newtype;
 
             // Register the callback to add recipes
             this.AddRecipeCallback();
@@ -161,6 +169,7 @@ namespace ColonyAPI.Classes
             }
             set
             {
+                this._hasCustomMaterial = true;
                 this._SideAll = value;
                 this.node.SetAs("sideall", value);
             }
@@ -315,8 +324,17 @@ namespace ColonyAPI.Classes
             }
             set
             {
-                this._Icon = value + ".png";
-                this.node.SetAs("icon", value + ".png");
+                if (Utilities.ValidateIcon(value))
+                {
+                    this._Icon = value + ".png";
+                    this.node.SetAs("icon", value + ".png");
+                }
+                else
+                {
+                    this._Icon = "missing.png";
+                    this.node.SetAs("icon", "missing.png");
+                }
+               
             }
         }
 
@@ -511,6 +529,18 @@ namespace ColonyAPI.Classes
             }
         }
 
+        public bool IsNewType
+        {
+            get
+            {
+                return this._IsNewType;
+            }
+            set
+            {
+                this._IsNewType = value;
+            }
+        }
+
         public long DestructionTime
         {
             get
@@ -664,24 +694,34 @@ namespace ColonyAPI.Classes
         // Add the block!
         public void Register()
         {
-            //Utilities.WriteLog(this.TypeName);
+            if(this.TypeName != null) {
 
+                // set default sideall if none is set
+                if (!_hasCustomMaterial)
+                {
+                    if (MaterialManager.ValidateMaterial(this.TypeName))
+                    {
+                        this._SideAll = "SELF";
+                    }
+                }
 
+                // Add the item
+                TypeManager.registerRawType(this.TypeName, this.node);
 
-            // Add the item
-            TypeManager.registerRawType(this.TypeName, this.node);
+                // register with our tracker, just in case we need to get these later!
+                TypeManager.AddedTypes.Add(this.TypeName);
+                TypeManager.registerActionableTypeCallback(this);
 
-            // register with our tracker, just in case we need to get these later!
-            TypeManager.AddedTypes.Add(this.TypeName);
-            TypeManager.registerActionableTypeCallback(this);
+                if (this._AllowCreative)
+                {
+                    TypeManager.CreativeAddedTypes.Add(this.TypeName);
+                }
 
-            if (this._AllowCreative)
-            {
-                TypeManager.CreativeAddedTypes.Add(this.TypeName);
+                // Tell the user it was added
+                //Utilities.WriteLog("Added Type: " + this.TypeName, Helpers.Chat.ChatColour.green, Helpers.Chat.ChatStyle.italic);
             }
 
-            // Tell the user it was added
-            //Utilities.WriteLog("Added Type: " + this.TypeName, Helpers.Chat.ChatColour.green, Helpers.Chat.ChatStyle.italic);
+
         }
     }
 }

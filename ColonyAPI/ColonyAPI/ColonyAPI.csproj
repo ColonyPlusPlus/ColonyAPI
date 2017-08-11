@@ -61,6 +61,7 @@
     <Compile Include="Helpers\Chat.cs" />
     <Compile Include="Helpers\ItemHelper.cs" />
     <Compile Include="Helpers\Utilities.cs" />
+    <Compile Include="Interfaces\IAutoType.cs" />
     <Compile Include="Managers\JobManager.cs" />
     <Compile Include="Managers\MaterialManager.cs" />
     <Compile Include="Managers\RecipeManager.cs" />
