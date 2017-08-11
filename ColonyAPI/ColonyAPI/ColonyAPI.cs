@@ -17,7 +17,11 @@ namespace ColonyAPI
         {
             Helpers.Utilities.WriteLog("ColonyAPI", "Initialising ColonyAPI v" + APIVersion.ToString(3), Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.bold);
 
+            Helpers.ServerVariableParser.init();
+            Managers.ConfigManager.initialise();
+
             Temporary.BaseGameMaterialManager.initialiseMaterials();
+
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, "colonyapi.OnPlayerConnectedLate")]
