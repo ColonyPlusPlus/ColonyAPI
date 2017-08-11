@@ -40,6 +40,7 @@ namespace ColonyAPI.Managers
             {
                 ItemTypesServer.AddTextureMapping(mat.Key, mat.Value);
             }
+         
         }
     }
 }

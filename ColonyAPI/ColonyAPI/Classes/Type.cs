@@ -19,7 +19,7 @@ namespace ColonyAPI.Classes
         private string _OnPlaceAudio;
         private string _OnRemoveAudio;
         private string _ParentType;
-        private string _SideAll;
+        private string _SideAll = null;
         private string _SideXMinus;
         private string _SideXPlus;
         private string _SideYMinus;
@@ -31,7 +31,7 @@ namespace ColonyAPI.Classes
         private string _RotatableZMinus;
         private string _RotatableZPlus;
         private string _TypeName;
-        private string _Icon = "missing.png";
+        private string _Icon;
         private string _Mesh;
 
         private int _NPCLimit;
@@ -117,6 +117,8 @@ namespace ColonyAPI.Classes
             this.IsBaseBlock = true;
             this.IsNewType = newtype;
 
+            
+
             // Register the callback to add recipes
             this.AddRecipeCallback();
         }
@@ -195,6 +197,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideXMinus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidex-", value);
             }
         }
@@ -208,6 +211,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideXPlus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidex+", value);
             }
         }
@@ -221,6 +225,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideYMinus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidey-", value);
             }
         }
@@ -234,6 +239,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideYPlus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidey+", value);
             }
         }
@@ -247,6 +253,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideZMinus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidez-", value);
             }
         }
@@ -260,6 +267,7 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideZPlus = value;
+                this._hasCustomMaterial = true;
                 this.node.SetAs("sidez+", value);
             }
         }
@@ -699,10 +707,19 @@ namespace ColonyAPI.Classes
                 // set default sideall if none is set
                 if (!_hasCustomMaterial)
                 {
+                    //Utilities.WriteLog("ColonyAPI", this.TypeName + " has no material set!");
                     if (MaterialManager.ValidateMaterial(this.TypeName))
                     {
+                        //Utilities.WriteLog("ColonyAPI", "Set SELF material for: " + this.TypeName);
                         this._SideAll = "SELF";
+                        this.node.SetAs("sideall", "SELF");
                     }
+                   
+                }
+                // set default icon if none is set
+                if(_Icon == null)
+                {
+                    this.Icon = this.TypeName;
                 }
 
                 // Add the item

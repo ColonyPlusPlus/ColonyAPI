@@ -16,6 +16,8 @@ namespace ColonyAPI
         public static void AfterStartup()
         {
             Helpers.Utilities.WriteLog("ColonyAPI", "Initialising ColonyAPI v" + APIVersion.ToString(3), Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.bold);
+
+            Temporary.BaseGameMaterialManager.initialiseMaterials();
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, "colonyapi.OnPlayerConnectedLate")]
@@ -27,10 +29,15 @@ namespace ColonyAPI
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, "colonyapi.AfterAddingBaseTypes")]
         public static void AfterAddingBaseTypes()
         {
+            Helpers.Utilities.WriteLog("ColonyAPI", "Starting Master AfterAddingBaseTypes");
+
+            
             Managers.MaterialManager.registerMaterials();
 
             Managers.TypeManager.autoDiscoverTypes();
             Managers.TypeManager.processTypeRegistration();
+
+            Helpers.Utilities.WriteLog("ColonyAPI", "Ending Master AfterAddingBaseTypes");
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesServer, "colonyapi.AfterItemTypesServer")]

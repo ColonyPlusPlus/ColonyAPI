@@ -48,10 +48,18 @@ namespace ColonyAPI.Managers
 
         public static void processTypeRegistration()
         {
-            if(rawTypeDict.Count >0)
+            List<string> CurrentRawTypes = ItemTypes.GetAllRawTypes();
+            Helpers.Utilities.WriteLog("ColonyAPI", "Base Type Count: " + CurrentRawTypes.Count);
+
+            if (rawTypeDict.Count >0)
             {
                 foreach(string typename in rawTypeDict.Keys)
                 {
+                    if(CurrentRawTypes.Contains(typename))
+                    {
+                        Helpers.Utilities.WriteLog("ColonyAPI", "Found duplicate type: " + typename);
+                        ItemTypes.RemoveRawType(typename);
+                    }
                     ItemTypes.AddRawType(typename, rawTypeDict[typename]);
                 }
             }

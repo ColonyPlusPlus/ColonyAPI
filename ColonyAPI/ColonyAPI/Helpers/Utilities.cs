@@ -26,7 +26,9 @@ namespace ColonyAPI.Helpers
 
         public static bool ValidateIcon(string exists)
         {
-            return File.Exists(Directory.GetCurrentDirectory() + "/gamedata/textures/icons/" + exists + ".png");
+            string path = Directory.GetCurrentDirectory() + "/gamedata/textures/icons/" + exists + ".png";
+            //WriteLog("ColonyAPI", "Type: " + exists + " result: " +path );
+            return File.Exists(path);
         }
 
         public static void MakeDirectoriesIfNeeded(string path)
