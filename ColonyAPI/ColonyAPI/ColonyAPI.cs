@@ -15,7 +15,7 @@ namespace ColonyAPI
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, "colonyapi.AfterStartup")]
         public static void AfterStartup()
         {
-            Helpers.Utilities.WriteLog("ColonyAPI", "Initialiasing ColonyAPI v" + APIVersion.ToString(3), Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.bold);
+            Helpers.Utilities.WriteLog("ColonyAPI", "Initialising ColonyAPI v" + APIVersion.ToString(3), Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.bold);
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.OnPlayerConnectedLate, "colonyapi.OnPlayerConnectedLate")]
