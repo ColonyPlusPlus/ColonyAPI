@@ -29,6 +29,7 @@ namespace ColonyAPI
         {
             Managers.MaterialManager.registerMaterials();
 
+            Managers.TypeManager.autoDiscoverTypes();
             Managers.TypeManager.processTypeRegistration();
         }
 
