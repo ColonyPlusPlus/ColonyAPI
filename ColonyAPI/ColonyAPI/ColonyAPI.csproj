@@ -55,17 +55,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CustomDataItem.cs" />
+    <Compile Include="Classes\CustomDataNode.cs" />
+    <Compile Include="Classes\ItemHelper.cs" />
     <Compile Include="Classes\Recipe.cs" />
     <Compile Include="Classes\Type.cs" />
     <Compile Include="ColonyAPI.cs" />
     <Compile Include="Helpers\Chat.cs" />
     <Compile Include="Helpers\ItemHelper.cs" />
+    <Compile Include="Helpers\ServerVariableParser.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Interfaces\IAutoType.cs" />
+    <Compile Include="Managers\ConfigManager.cs" />
     <Compile Include="Managers\JobManager.cs" />
     <Compile Include="Managers\MaterialManager.cs" />
     <Compile Include="Managers\RecipeManager.cs" />
     <Compile Include="Managers\TypeManager.cs" />
+    <Compile Include="Managers\VersionCheckManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temporary\BaseGameMaterialManager.cs" />
   </ItemGroup>
