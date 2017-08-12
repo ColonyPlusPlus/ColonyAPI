@@ -72,6 +72,8 @@ namespace ColonyAPI.Managers
             {
                 recipeCount += 1;
 
+                Helpers.Utilities.WriteLog("ColonyAPI", "Loaded recipe for: " + RecipeInstance.Results[0].Type);
+
                 if (RecipeInstance.PlayerCraftable == true)
                 {
                     global::RecipePlayer.AllRecipes.Add(new global::Recipe(RecipeInstance.Requirements, RecipeInstance.Results));
@@ -94,7 +96,7 @@ namespace ColonyAPI.Managers
                 if (JobManager.JobRecipeMappings.ContainsKey(craftingtype))
                 {
                     Pipliz.APIProvider.Recipes.RecipeManager.AddRecipes(JobManager.JobRecipeMappings[craftingtype], RecipeMappings[craftingtype]);
-                    Helpers.Utilities.WriteLog("ColonyAPI", "Registered recipes for job [" + RecipeMappings[craftingtype] + "]");
+                    Helpers.Utilities.WriteLog("ColonyAPI", "Registered recipes for job [" + JobManager.JobRecipeMappings[craftingtype] + "]");
                 }
             }
 
@@ -104,7 +106,7 @@ namespace ColonyAPI.Managers
                 recipeCount += 1;
                 
 
-                if (RecipeMappings.ContainsKey(RecipeInstance.Type.ToLower()))
+                if (RecipeMappingsFueled.ContainsKey(RecipeInstance.Type.ToLower()))
                 {
                     RecipeMappingsFueled[RecipeInstance.Type.ToLower()].Add(new global::RecipeFueled(RecipeInstance.FuelCost, RecipeInstance.Requirements, RecipeInstance.Results));
                 }
@@ -115,14 +117,16 @@ namespace ColonyAPI.Managers
 
             }
 
-            foreach (string craftingtype in RecipeMappings.Keys)
+            foreach (string craftingtype in RecipeMappingsFueled.Keys)
             {
                 if (JobManager.JobRecipeMappings.ContainsKey(craftingtype))
                 {
                     Pipliz.APIProvider.Recipes.RecipeManager.AddRecipesFueled(JobManager.JobRecipeMappings[craftingtype], RecipeMappingsFueled[craftingtype]);
-                    Helpers.Utilities.WriteLog("ColonyAPI", "Registered fueled recipes for job [" + RecipeMappings[craftingtype] + "]");
+                    Helpers.Utilities.WriteLog("ColonyAPI", "Registered fueled recipes for job [" + JobManager.JobRecipeMappings[craftingtype] + "]");
                 }
             }
+
+
 
             Helpers.Utilities.WriteLog("ColonyAPI", "Registered " + playerRecipeCount + " player recipes");
             Helpers.Utilities.WriteLog("ColonyAPI", "Registered " + recipeCount + " total recipes");
