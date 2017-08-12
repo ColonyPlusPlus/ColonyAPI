@@ -32,7 +32,13 @@ namespace ColonyAPI.Classes
                 }
                 BaseChatCommand newCommand;
                 if (ColonyAPI.Managers.ChatCommandManager.ChatCommandsList.TryGetValue(splits[0] + " " + splits[1], out newCommand))
-                    return newCommand.TryDoCommand(ply, chatItem);
+                {
+                    if (RunCommand(ply, splits, NetworkID.Invalid))
+                    {
+                        return newCommand.TryDoCommand(ply, chatItem);
+                    }
+                    else return true;
+                }
                 else
                 {
                     Chat.Send(ply, "Command " + splits[1] + " is not a part of " + splits[0]);
