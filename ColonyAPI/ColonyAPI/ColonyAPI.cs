@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace ColonyAPI
 {
     [ModLoader.ModManager]
-    public class ColonyAPI
+    public class ColonyAPIBase
     {
 
         public static Version APIVersion = new Version(0, 1, 0);
@@ -18,9 +18,11 @@ namespace ColonyAPI
             Helpers.Utilities.WriteLog("ColonyAPI", "Initialising ColonyAPI v" + APIVersion.ToString(3), Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.bold);
 
             Helpers.ServerVariableParser.init();
-            Managers.ConfigManager.initialise();
 
             Temporary.BaseGameMaterialManager.initialiseMaterials();
+
+            // Initialize chat commands
+            Managers.ChatCommandManager.Initialize();
 
         }
 
@@ -49,6 +51,9 @@ namespace ColonyAPI
         {
             // Regsiter types with actions
             Managers.TypeManager.registerActionableTypes();
+
+            // Register Master Command
+            ChatCommands.CommandManager.RegisterCommand(new Managers.MasterChatCommandManager());
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterWorldLoad, "colonyapi.AfterWorldLoad")]
@@ -76,7 +81,7 @@ namespace ColonyAPI
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterDefiningNPCTypes, "colonyapi.AfterDefiningNPCTypes")]
-        [ModLoader.ModCallbackProvidesForAttribute("pipliz.apiprovider.jobs.resolvetypes")]
+        [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void AfterDefiningNPCTypes()
         {
            

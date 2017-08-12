@@ -9,7 +9,7 @@ namespace ColonyAPI.Managers
     public static class ConfigManager
     {
 
-        private static Dictionary<string,JSONNode> configSettings;
+        private static Dictionary<string, JSONNode> configSettings = new Dictionary<string, JSONNode>();
 
         public static void registerConfig(string modname, string configname = "config.json")
         {
@@ -281,18 +281,6 @@ namespace ColonyAPI.Managers
                 return new JSONNode(NodeType.Array);
             }
 
-        }
-
-
-
-        /// <summary>
-        /// Initialise the config manager
-        /// </summary>
-        public static void initialise()
-        {
-            configSettings = new Dictionary<string, JSONNode>();
-
-            
         }
 
         /// <summary>

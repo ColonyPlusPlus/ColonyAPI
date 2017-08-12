@@ -19,14 +19,21 @@ namespace ColonyAPI.Managers
         /// <param name="normal"></param>
         public static void createMaterial(string identifier, string albedo, string emissive, string height, string normal)
         {
-            // Register it with the ItemTypesServer
             JSONNode j = new JSONNode(NodeType.Object)
-                .SetAs("albedo", albedo)
-                .SetAs("emissive", emissive)
-                .SetAs("height", height)
-                .SetAs("normal", normal);
+               .SetAs("albedo", albedo)
+               .SetAs("emissive", emissive)
+               .SetAs("height", height)
+               .SetAs("normal", normal);
 
-            MatList.Add(identifier, j);
+            if (MatList.ContainsKey(identifier))
+            {
+                Helpers.Utilities.WriteLog("ColonyAPI", "[Warning] Material '" + identifier + "' already exists, replacing materials can have unexpected consequences.", Helpers.Chat.ChatColour.orange, Helpers.Chat.ChatStyle.normal);
+                MatList[identifier] = j;
+            } else
+            {
+                MatList.Add(identifier, j);
+            }
+
         }
 
         public static bool ValidateMaterial(string id)
