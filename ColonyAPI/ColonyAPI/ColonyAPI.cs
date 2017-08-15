@@ -115,7 +115,7 @@ namespace ColonyAPI
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterDefiningNPCTypes, "colonyapi.AddRecipeTypes")]
-        [ModLoader.ModCallbackProvidesFor("colonyapi.AfterItemTypesDefined")]
+        [ModLoader.ModCallbackProvidesFor("colonyapi.AfterDefiningNPCTypes")]
         public static void DefineRecipeMappings()
         {
         }
