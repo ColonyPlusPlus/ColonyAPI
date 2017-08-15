@@ -72,7 +72,7 @@ namespace ColonyAPI.Managers
             {
                 recipeCount += 1;
 
-                Helpers.Utilities.WriteLog("ColonyAPI", "Loaded recipe for: " + RecipeInstance.Results[0].Type);
+                //Helpers.Utilities.WriteLog("ColonyAPI", "Loaded recipe for: " + RecipeInstance.Results[0].Type);
 
                 if (RecipeInstance.PlayerCraftable == true)
                 {
