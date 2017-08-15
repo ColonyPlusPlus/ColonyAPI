@@ -41,7 +41,8 @@ namespace ColonyAPI
 
         // run material registration, to register materials, you can ProvidesFor("colonyapi.registerMaterials")
 		[ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, "colonyapi.registerMaterials")]
-		public static void AfterAddingBaseTypesMaterials()
+        [ModLoader.ModCallbackProvidesFor("colonyapi.discoverTypes")]
+        public static void AfterAddingBaseTypesMaterials()
 		{
 			Helpers.Utilities.WriteLog("ColonyAPI", "Starting Material Registration");
 
@@ -52,7 +53,8 @@ namespace ColonyAPI
 
         // Autodiscover all types that implement IAutoType, unlikely someone would need to hook into this
 		[ModLoader.ModCallback(ModLoader.EModCallbackType.AfterAddingBaseTypes, "colonyapi.discoverTypes")]
-		public static void AfterAddingBaseTypesDiscover()
+        [ModLoader.ModCallbackProvidesFor("colonyapi.registerTypes")]
+        public static void AfterAddingBaseTypesDiscover()
 		{
 			Helpers.Utilities.WriteLog("ColonyAPI", "Starting Type Discovery");
 
