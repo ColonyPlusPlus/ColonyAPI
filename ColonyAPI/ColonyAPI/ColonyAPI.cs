@@ -110,8 +110,14 @@ namespace ColonyAPI
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.jobs.resolvetypes")]
         public static void AfterDefiningNPCTypes()
         {
-           
-        
+
+
+        }
+
+        [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterDefiningNPCTypes, "colonyapi.AddRecipeTypes")]
+        [ModLoader.ModCallbackProvidesFor("colonyapi.AfterItemTypesDefined")]
+        public static void DefineRecipeMappings()
+        {
         }
 
         [ModLoader.ModCallback(ModLoader.EModCallbackType.AfterItemTypesDefined, "colonyapi.AfterItemTypesDefined")]

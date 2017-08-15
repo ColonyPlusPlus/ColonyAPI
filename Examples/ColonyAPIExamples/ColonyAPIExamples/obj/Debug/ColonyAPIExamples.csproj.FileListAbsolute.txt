@@ -1,0 +1,10 @@
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\ColonyAPIExamples.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\ColonyAPIExamples.pdb
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\APIProvider.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\Assembly-CSharp.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\ColonyAPI.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\UnityEngine.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\bin\Debug\UnityEngine.UI.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\obj\Debug\ColonyAPIExamples.csprojResolveAssemblyReference.cache
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\obj\Debug\ColonyAPIExamples.dll
+F:\Development\ColonyAPI\Examples\ColonyAPIExamples\ColonyAPIExamples\obj\Debug\ColonyAPIExamples.pdb
