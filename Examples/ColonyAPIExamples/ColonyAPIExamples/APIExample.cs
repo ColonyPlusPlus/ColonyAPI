@@ -32,6 +32,13 @@ namespace ColonyAPIExamples
             // You can write to the log with this, specifying colour and font style
             ColonyAPI.Helpers.Utilities.WriteLog("ColonyAPIExample", "Loaded Colony API Example v" + modVersion.ToString(), ColonyAPI.Helpers.Chat.ChatColour.yellow, ColonyAPI.Helpers.Chat.ChatStyle.normal);
 
+            // you can get variables from config like so:
+            // the mod name (the name of the mod folder) must be passed
+            // values can be used in dot notation (something.avalue maps to { "something" : { "avalue": "aresult" } })
+            string somestring = ColonyAPI.Managers.ConfigManager.getConfigString("ColonyAPIExample", "something.avalue");
+            ColonyAPI.Helpers.Utilities.WriteLog("ColonyAPIExample", "Some Config Value:" + somestring, ColonyAPI.Helpers.Chat.ChatColour.yellow, ColonyAPI.Helpers.Chat.ChatStyle.normal);
+
+
         }
 
 
@@ -58,7 +65,7 @@ namespace ColonyAPIExamples
 
             // Register Materials
             // Create a material with the following parameters: name, albedo, emissive, heightmap, and normal
-            ColonyAPI.Managers.MaterialManager.createMaterial("examplemat1", "grass", "neutral", "berrybush", "berrybush");
+            ColonyAPI.Managers.MaterialManager.createMaterial("examplemat1", "grassTemperate", "neutral", "berrybush", "berrybush");
             ColonyAPI.Managers.MaterialManager.createMaterial("examplemat2", "planks", "neutral", "leavesTemperate", "leavesTemperate");
 
             // you can also replace materials that already exist (both in the base game and other mods if your registerMaterials
@@ -89,7 +96,7 @@ namespace ColonyAPIExamples
             this.TypeName = "awesomeblock";
             this.OnRemoveAudio = "woodDeleteLight";
             this.OnPlaceAudio = "woodPlace";
-            this.SideAll = "stonebricks";
+            this.SideAll = "examplemat1";
 
             // our custom material!
             this.SideYPlus = "planks";

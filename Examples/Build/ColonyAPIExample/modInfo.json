@@ -1,0 +1,8 @@
+{
+	"assemblies" : [
+		{
+			"path" : "ColonyAPIExamples.dll",
+			"enabled" : true
+		}
+	]
+}
