@@ -12,7 +12,14 @@ namespace ColonyAPI.Managers
 
         public static void RegisterJobType(string craftingtype, string jobIdentifier)
         {
-            JobRecipeMappings.Add(craftingtype, jobIdentifier);
+            if(JobRecipeMappings.ContainsKey(craftingtype)) {
+                JobRecipeMappings[craftingtype] = jobIdentifier;
+            }
+            else
+            {
+                JobRecipeMappings.Add(craftingtype, jobIdentifier);
+            }
+            
         }
     }
 }

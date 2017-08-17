@@ -9,7 +9,7 @@ namespace ColonyAPI
     public class ColonyAPIBase
     {
 
-        public static Version APIVersion = new Version(0, 1, 0);
+        public static Version APIVersion = new Version(0, 1, 1);
 
 		// Initialise things for the modloader, ideally nothing would run before this!
 		[ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, "colonyapi.initialise")]
@@ -127,7 +127,7 @@ namespace ColonyAPI
         [ModLoader.ModCallbackProvidesFor("pipliz.apiprovider.registerrecipes")]
         public static void AfterItemTypesDefined()
         {
-
+            Managers.RecipeManager.registerBaseRecipeBindings();
             Managers.RecipeManager.BuildRecipeList();
             Managers.RecipeManager.ProcessRecipes();
 

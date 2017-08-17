@@ -97,6 +97,9 @@ namespace ColonyAPI.Managers
                 {
                     Pipliz.APIProvider.Recipes.RecipeManager.AddRecipes(JobManager.JobRecipeMappings[craftingtype], RecipeMappings[craftingtype]);
                     Helpers.Utilities.WriteLog("ColonyAPI", "Registered recipes for job [" + JobManager.JobRecipeMappings[craftingtype] + "]");
+                } else
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", "Mod tried to load recipe for [" + craftingtype + "]");
                 }
             }
 
@@ -124,12 +127,29 @@ namespace ColonyAPI.Managers
                     Pipliz.APIProvider.Recipes.RecipeManager.AddRecipesFueled(JobManager.JobRecipeMappings[craftingtype], RecipeMappingsFueled[craftingtype]);
                     Helpers.Utilities.WriteLog("ColonyAPI", "Registered fueled recipes for job [" + JobManager.JobRecipeMappings[craftingtype] + "]");
                 }
+                else
+                {
+                    Helpers.Utilities.WriteLog("ColonyAPI", "Mod tried to load fueled recipe for [" + craftingtype + "]");
+                }
             }
 
 
 
             Helpers.Utilities.WriteLog("ColonyAPI", "Registered " + playerRecipeCount + " player recipes");
             Helpers.Utilities.WriteLog("ColonyAPI", "Registered " + recipeCount + " total recipes");
+        }
+
+        public static void registerBaseRecipeBindings()
+        {
+
+            ColonyAPI.Managers.JobManager.RegisterJobType("crafting", "pipliz.crafter");
+            ColonyAPI.Managers.JobManager.RegisterJobType("grinding", "pipliz.grinder");
+            ColonyAPI.Managers.JobManager.RegisterJobType("smelting", "pipliz.smelter");
+            ColonyAPI.Managers.JobManager.RegisterJobType("baking", "pipliz.baker");
+            ColonyAPI.Managers.JobManager.RegisterJobType("minting", "pipliz.minter");
+            ColonyAPI.Managers.JobManager.RegisterJobType("shopping", "pipliz.merchant");
+            ColonyAPI.Managers.JobManager.RegisterJobType("tailoring", "pipliz.tailor");
+            ColonyAPI.Managers.JobManager.RegisterJobType("researching", "pipliz.technologist");
         }
 
         /// <summary>
