@@ -9,7 +9,7 @@ namespace ColonyAPI
     public class ColonyAPIBase
     {
 
-        public static Version APIVersion = new Version(0, 1, 1);
+        public static Version APIVersion = new Version(0, 1, 2);
 
 		// Initialise things for the modloader, ideally nothing would run before this!
 		[ModLoader.ModCallback(ModLoader.EModCallbackType.AfterStartup, "colonyapi.initialise")]

@@ -197,7 +197,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideXMinus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidex-", value);
             }
         }
@@ -211,7 +210,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideXPlus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidex+", value);
             }
         }
@@ -225,7 +223,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideYMinus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidey-", value);
             }
         }
@@ -239,7 +236,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideYPlus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidey+", value);
             }
         }
@@ -253,7 +249,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideZMinus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidez-", value);
             }
         }
@@ -267,7 +262,6 @@ namespace ColonyAPI.Classes
             set
             {
                 this._SideZPlus = value;
-                this._hasCustomMaterial = true;
                 this.node.SetAs("sidez+", value);
             }
         }

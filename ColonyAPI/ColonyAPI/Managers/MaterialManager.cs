@@ -60,7 +60,10 @@ namespace ColonyAPI.Managers
         {
             foreach (KeyValuePair<string, JSONNode> mat in MatList)
             {
-                ItemTypesServer.AddTextureMapping(mat.Key, mat.Value);
+                if (ItemTypesServer.ContainsTextureMapping(mat.Key))
+                {
+                    ItemTypesServer.RemoveTextureMapping(mat.Key);
+                }
             }
          
         }

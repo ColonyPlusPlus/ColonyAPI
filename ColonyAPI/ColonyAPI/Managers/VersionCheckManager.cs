@@ -55,12 +55,12 @@ namespace ColonyAPI.Managers
                 else if (result < 0)
                 {
                     // latestversion is greater
-                    Helpers.Utilities.WriteLog(ModName, "ColonyPlusPlus is out of date. Latest version: " + latestVersion.ToString() + "!", Helpers.Chat.ChatColour.red, Helpers.Chat.ChatStyle.italic);
+                    Helpers.Utilities.WriteLog(ModName, "Out of date. Latest version: " + latestVersion.ToString() + "!", Helpers.Chat.ChatColour.red, Helpers.Chat.ChatStyle.italic);
                 }
                 else
                 {
                     // currenversion is greater
-                    Helpers.Utilities.WriteLog(ModName, "ColonyPlusPlus is up to date.", Helpers.Chat.ChatColour.white, Helpers.Chat.ChatStyle.italic);
+                    Helpers.Utilities.WriteLog(ModName, "Up to date.", Helpers.Chat.ChatColour.white, Helpers.Chat.ChatStyle.italic);
                 }
 
                 return;
@@ -85,20 +85,17 @@ namespace ColonyAPI.Managers
                 if (result > 0)
                 {
                     // currenversion is greater
-                    return "You are running a newer version than the public release (latest public release: " + latestVersion.ToString() + ")";
-                    //Utilities.WriteLog("You are running a newer version than the public release (latest public release: " + latestVersion.ToString() + ")", Helpers.Chat.ChatColour.cyan, Helpers.Chat.ChatStyle.italic);
+                    return "You are running a newer version than the public release of "+modname+" (latest public release: " + latestVersion.ToString() + ")";
                 }
                 else if (result < 0)
                 {
                     // latestversion is greater
-                    return "ColonyPlusPlus is out of date. Latest version: " + latestVersion.ToString() + "!";
-                    //Utilities.WriteLog("ColonyPlusPlus is out of date. Latest version: " + latestVersion.ToString() + "!", Helpers.Chat.ChatColour.red, Helpers.Chat.ChatStyle.italic);
+                    return modname + " is out of date. Latest version: " + latestVersion.ToString() + "!";
                 }
                 else
                 {
                     // currenversion is greater
-                    return "ColonyPlusPlus is up to date.";
-                    //Utilities.WriteLog("ColonyPlusPlus is up to date.", Helpers.Chat.ChatColour.white, Helpers.Chat.ChatStyle.italic);
+                    return modname+" is up to date.";
                 }
 
             }
