@@ -33,7 +33,22 @@ namespace ColonyAPI.Managers
             {
                 MatList.Add(identifier, j);
             }
-
+        }
+        private static string GetAlbedo(string modfolder, string file)
+        {
+            return "../../../../mods/" + modfolder + "/textures/materials/blocks/albedo/" + file;
+        }
+        private static string GetEmissive(string modfolder, string file)
+        {
+            return "../../../../mods/" + modfolder + "/textures/materials/blocks/emissiveMaskAlpha/" + file;
+        }
+        private static string GetHeight(string modfolder, string file)
+        {
+            return "../../../../mods/" + modfolder + "/textures/materials/blocks/heightSmoothnessSpecularity/" + file;
+        }
+        private static string GetNormal(string modfolder, string file)
+        {
+            return "../../../../mods/" + modfolder + "/textures/materials/blocks/normal/" + file;
         }
 
         public static bool ValidateMaterial(string id)
