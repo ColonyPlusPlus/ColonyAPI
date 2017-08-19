@@ -132,10 +132,5 @@ namespace ColonyAPI
             Managers.RecipeManager.ProcessRecipes();
 
         }
-
-        [ModLoader.ModCallback(ModLoader.EModCallbackType.OnTerrainGeneratorStructures, "colonyapi.OnTerrainGeneratorStructures")]
-        public static void OnTerrainGeneratorStructors()
-        {
-        }
     }
 }
