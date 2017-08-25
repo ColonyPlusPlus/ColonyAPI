@@ -37,13 +37,8 @@ namespace ColonyAPI.Managers
 
         public static void registerRawType(string typename, JSONNode node)
         {
-            if(rawTypeDict.ContainsKey(typename))
-            {
-                rawTypeDict[typename] = node;
-            } else
-            {
-                rawTypeDict.Add(typename, node);
-            }
+            rawTypeDict[typename] = node;
+            
         }
 
         public static void processTypeRegistration()
