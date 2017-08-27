@@ -93,7 +93,7 @@ namespace ColonyAPI.Classes
             }
             else
             {
-                this._Icon = "missing.png";
+                this._Icon = "error.png";
             }
 
             this.node.SetAs("icon", this._Icon);
