@@ -5,30 +5,22 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using ColonyAPI.Managers;
 
 namespace ColonyAPI.Managers
 {
     public class VersionManager
     {
 
-        private static Dictionary<string, string> versionCheckURLs = new Dictionary<string, string>();
-
-        public static void addVersionURL(string modname, string URL)
-        {
-            if(versionCheckURLs.ContainsKey(modname))
-            {
-                versionCheckURLs[modname] = URL;
-            } else
-            {
-                versionCheckURLs.Add(modname, URL);
-            }
-        }
-
         public static string getVersionURL(string modname)
         {
-            if(versionCheckURLs.ContainsKey(modname))
+            if(ModManager.modInstalled(modname))
             {
-                return versionCheckURLs[modname];
+                Classes.Mod m = ModManager.getMod(modname);
+                if(m.hasUpdateURL)
+                {
+                    return m.updateURL;
+                }
             }
             return "";
         }
